@@ -1,0 +1,3011 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>Bank Sampah EcoCycle - Daur Ulang Modern</title>
+    <meta name="description" content="Bank Sampah EcoCycle dengan dua tema spesifik: Hijau Tua yang natural dan Biru Cerah yang energik.">
+    <meta name="theme-color" content="#1B5E20" id="themeColorMeta">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Nunito:wght@700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* Reset dan Base Mobile-First */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        :root {
+            /* Common variables */
+            --border-radius: 16px;
+            --border-radius-lg: 24px;
+            --shadow-soft: 0 4px 16px rgba(0, 0, 0, 0.08);
+            --shadow-medium: 0 8px 32px rgba(0, 0, 0, 0.12);
+            --shadow-deep: 0 12px 48px rgba(0, 0, 0, 0.15);
+            --transition-fast: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --transition-smooth: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            --container-padding: 1.5rem;
+            --sidebar-width: 320px;
+            --sidebar-width-mobile: 280px;
+            
+            /* Safe areas */
+            --safe-top: env(safe-area-inset-top, 0px);
+            --safe-bottom: env(safe-area-inset-bottom, 0px);
+        }
+        
+        /* TEMA HIJAU TUA (Default) */
+        body.theme-dark-green {
+            --primary-dark: #1B5E20;
+            --primary-main: #2E7D32;
+            --primary-light: #4CAF50;
+            --primary-pastel: #A5D6A7;
+            --secondary-dark: #1565C0;
+            --secondary-main: #1976D2;
+            --secondary-light: #42A5F5;
+            --accent-main: #FFB300;
+            --accent-light: #FFD54F;
+            --background-main: #F8F9FA;
+            --background-card: #FFFFFF;
+            --text-primary: #2E3A30;
+            --text-secondary: #6B7B6F;
+            --text-muted: #94A098;
+            --border-color: #E0E6DC;
+            --success-color: #4CAF50;
+            --warning-color: #FF9800;
+            --gradient-primary: linear-gradient(135deg, #1B5E20, #2E7D32);
+            --gradient-accent: linear-gradient(135deg, #FFB300, #FFD54F);
+            --gradient-bg: radial-gradient(circle at 10% 20%, rgba(165, 214, 167, 0.15) 0%, transparent 25%),
+                          radial-gradient(circle at 90% 80%, rgba(76, 175, 80, 0.1) 0%, transparent 25%);
+            --sidebar-bg: rgba(255, 255, 255, 0.95);
+            --sidebar-border: #E0E6DC;
+            
+            /* Form specific colors for dark green theme */
+            --form-bg: #FFFFFF;
+            --form-border: #E0E6DC;
+            --form-border-focus: #4CAF50;
+            --form-text: #2E3A30;
+            --form-placeholder: #94A098;
+            --form-label: #1B5E20;
+            --form-shadow-focus: 0 0 0 3px rgba(76, 175, 80, 0.2);
+            --form-error: #F44336;
+            --form-success: #4CAF50;
+        }
+        
+        /* TEMA BIRU CERAH */
+        body.theme-bright-blue {
+            --primary-dark: #1565C0;
+            --primary-main: #1976D2;
+            --primary-light: #42A5F5;
+            --primary-pastel: #90CAF9;
+            --secondary-dark: #1B5E20;
+            --secondary-main: #2E7D32;
+            --secondary-light: #4CAF50;
+            --accent-main: #FF9800;
+            --accent-light: #FFB74D;
+            --background-main: #F0F7FF;
+            --background-card: #FFFFFF;
+            --text-primary: #1A237E;
+            --text-secondary: #3F51B5;
+            --text-muted: #7986CB;
+            --border-color: #C5CAE9;
+            --success-color: #00C853;
+            --warning-color: #FF9100;
+            --gradient-primary: linear-gradient(135deg, #1565C0, #1976D2);
+            --gradient-accent: linear-gradient(135deg, #2E7D32, #4CAF50);
+            --gradient-bg: radial-gradient(circle at 10% 20%, rgba(144, 202, 249, 0.15) 0%, transparent 25%),
+                          radial-gradient(circle at 90% 80%, rgba(66, 165, 245, 0.15) 0%, transparent 25%);
+            --sidebar-bg: rgba(255, 255, 255, 0.95);
+            --sidebar-border: #C5CAE9;
+            
+            /* Form specific colors for bright blue theme */
+            --form-bg: #FFFFFF;
+            --form-border: #C5CAE9;
+            --form-border-focus: #1976D2;
+            --form-text: #1A237E;
+            --form-placeholder: #7986CB;
+            --form-label: #1565C0;
+            --form-shadow-focus: 0 0 0 3px rgba(25, 118, 210, 0.2);
+            --form-error: #FF5252;
+            --form-success: #00C853;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+            font-size: 16px;
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-primary);
+            line-height: 1.6;
+            background-color: var(--background-main);
+            background-image: var(--gradient-bg);
+            min-height: 100vh;
+            overflow-x: hidden;
+            padding-top: var(--safe-top);
+            padding-bottom: var(--safe-bottom);
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+        
+        /* Container System */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--container-padding);
+        }
+        
+        /* Typography System */
+        h1, h2, h3, h4 {
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            line-height: 1.2;
+            color: var(--text-primary);
+        }
+        
+        h1 {
+            font-size: clamp(1.8rem, 5vw, 3rem);
+            margin-bottom: 1rem;
+            background: var(--gradient-primary);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        h2 {
+            font-size: clamp(1.5rem, 4vw, 2.5rem);
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 4px;
+            background: var(--gradient-primary);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 2px;
+        }
+        
+        h3 {
+            font-size: clamp(1.2rem, 3vw, 1.6rem);
+            margin-bottom: 1rem;
+            color: var(--primary-main);
+        }
+        
+        p {
+            margin-bottom: 1.2rem;
+            color: var(--text-secondary);
+            font-size: clamp(0.95rem, 2vw, 1.05rem);
+        }
+        
+        .section-subtitle {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            color: var(--text-secondary);
+            font-size: clamp(1rem, 2vw, 1.1rem);
+        }
+        
+        /* Button System - Touch Optimized */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient-primary);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: clamp(0.95rem, 2vw, 1.1rem);
+            transition: var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            min-height: 54px;
+            min-width: 140px;
+            touch-action: manipulation;
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .btn::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: -100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: var(--transition-smooth);
+        }
+        
+        .btn:hover::after {
+            left: 100%;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .btn:active {
+            transform: translateY(-1px);
+        }
+        
+        .btn-secondary {
+            background: var(--gradient-accent);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-main);
+            color: var(--primary-main);
+        }
+        
+        .btn-small {
+            padding: 0.5rem 1rem;
+            min-height: 40px;
+            font-size: 0.9rem;
+            min-width: auto;
+        }
+        
+        .btn i {
+            margin-right: 0.5rem;
+        }
+        
+        /* FORM SYSTEM - STYLES FOR ALL FORMS */
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--form-label);
+            font-size: 0.95rem;
+            transition: var(--transition-fast);
+        }
+        
+        .form-label i {
+            margin-right: 0.5rem;
+            color: var(--primary-main);
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--form-border);
+            border-radius: var(--border-radius);
+            font-family: 'Poppins', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition-fast);
+            background-color: var(--form-bg);
+            color: var(--form-text);
+            -webkit-appearance: none;
+            appearance: none;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--form-border-focus);
+            box-shadow: var(--form-shadow-focus);
+        }
+        
+        .form-control::placeholder {
+            color: var(--form-placeholder);
+            opacity: 0.8;
+        }
+        
+        .form-control:hover {
+            border-color: var(--primary-light);
+        }
+        
+        textarea.form-control {
+            min-height: 120px;
+            resize: vertical;
+            line-height: 1.5;
+        }
+        
+        select.form-control {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%2394A098' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 12px;
+            padding-right: 2.5rem;
+            cursor: pointer;
+        }
+        
+        select.form-control option {
+            background-color: var(--form-bg);
+            color: var(--form-text);
+            padding: 0.5rem;
+        }
+        
+        /* Form validation styles */
+        .form-control.error {
+            border-color: var(--form-error);
+            box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.2);
+        }
+        
+        .form-control.success {
+            border-color: var(--form-success);
+            box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+        }
+        
+        .form-error-message {
+            color: var(--form-error);
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        
+        .form-error-message.show {
+            display: block;
+        }
+        
+        .form-success-message {
+            color: var(--form-success);
+            font-size: 0.85rem;
+            margin-top: 0.25rem;
+            display: none;
+        }
+        
+        .form-success-message.show {
+            display: block;
+        }
+        
+        /* Checkbox and Radio styles */
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+            cursor: pointer;
+        }
+        
+        .form-check-input {
+            width: 20px;
+            height: 20px;
+            margin-right: 0.75rem;
+            cursor: pointer;
+            accent-color: var(--primary-main);
+        }
+        
+        .form-check-label {
+            color: var(--form-text);
+            font-size: 0.95rem;
+            cursor: pointer;
+        }
+        
+        /* Form group with icon */
+        .form-group-with-icon {
+            position: relative;
+        }
+        
+        .form-group-with-icon .form-control {
+            padding-left: 3rem;
+        }
+        
+        .form-group-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary-main);
+            font-size: 1.1rem;
+            pointer-events: none;
+        }
+        
+        /* Required field indicator */
+        .required::after {
+            content: ' *';
+            color: var(--form-error);
+        }
+        
+        /* Form header */
+        .form-header {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .form-header h3 {
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-header p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        
+        /* Form footer */
+        .form-footer {
+            margin-top: 2rem;
+            text-align: center;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .form-footer p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+        
+        /* Specific form containers */
+        .form-container {
+            background: var(--background-card);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            box-shadow: var(--shadow-soft);
+            border: 2px solid var(--border-color);
+            transition: var(--transition-fast);
+        }
+        
+        .form-container:hover {
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .quick-contact-form {
+            margin-top: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(var(--primary-pastel-rgb, 165, 214, 167), 0.05);
+            border-radius: var(--border-radius);
+            border: 2px solid var(--border-color);
+        }
+        
+        .quick-contact-form h4 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--primary-main);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .main-form {
+            width: 100%;
+        }
+        
+        /* Theme Switcher */
+        .theme-switcher {
+            position: fixed;
+            bottom: 2rem;
+            left: 1rem;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .theme-btn {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition-fast);
+            touch-action: manipulation;
+        }
+        
+        .theme-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .theme-btn.dark-green {
+            background: linear-gradient(135deg, #1B5E20, #2E7D32);
+            color: white;
+        }
+        
+        .theme-btn.bright-blue {
+            background: linear-gradient(135deg, #1565C0, #1976D2);
+            color: white;
+        }
+        
+        /* Header System */
+        header {
+            background-color: rgba(var(--background-card-rgb, 255, 255, 255), 0.95);
+            backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-soft);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid var(--border-color);
+            padding-top: var(--safe-top);
+            transition: var(--transition-fast);
+        }
+        
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .logo-icon {
+            font-size: 2rem;
+            color: var(--primary-main);
+            transition: var(--transition-fast);
+        }
+        
+        .logo-text h1 {
+            font-size: 1.3rem;
+            margin-bottom: 0;
+            transition: var(--transition-fast);
+        }
+        
+        .logo-text span {
+            display: block;
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+        
+        /* Header Actions */
+        .header-actions {
+            display: flex;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        
+        .sidebar-toggle {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            border: 2px solid var(--border-color);
+            background: var(--primary-pastel);
+            color: var(--primary-dark);
+            font-size: 1.2rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition-fast);
+            touch-action: manipulation;
+        }
+        
+        .sidebar-toggle:hover {
+            background: var(--primary-light);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        /* Mobile Navigation */
+        .mobile-menu-btn {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 48px;
+            height: 48px;
+            background: var(--primary-pastel);
+            border: 2px solid var(--border-color);
+            border-radius: 12px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 0;
+            touch-action: manipulation;
+            transition: var(--transition-fast);
+        }
+        
+        .mobile-menu-btn span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--primary-dark);
+            margin: 3px 0;
+            transition: var(--transition-fast);
+            border-radius: 2px;
+        }
+        
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+        
+        nav {
+            position: fixed;
+            top: 0;
+            right: -100%;
+            width: 85%;
+            max-width: 400px;
+            height: 100vh;
+            background: rgba(var(--background-card-rgb, 255, 255, 255), 0.98);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            transition: var(--transition-smooth);
+            padding: 5rem 2rem 2rem;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.1);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        nav.active {
+            right: 0;
+        }
+        
+        nav ul {
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-bottom: 0.5rem;
+        }
+        
+        nav ul li a {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: var(--border-radius);
+            transition: var(--transition-fast);
+            font-size: 1.1rem;
+            border: 2px solid transparent;
+        }
+        
+        nav ul li a i {
+            margin-right: 12px;
+            width: 24px;
+            text-align: center;
+            color: var(--primary-main);
+        }
+        
+        nav ul li a:hover,
+        nav ul li a.active {
+            background: var(--primary-pastel);
+            color: var(--primary-main);
+            transform: translateX(5px);
+            border-color: var(--primary-light);
+        }
+        
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition-fast);
+        }
+        
+        .nav-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        /* Sidebar Styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            right: calc(-1 * var(--sidebar-width));
+            width: var(--sidebar-width);
+            height: 100vh;
+            background: var(--sidebar-bg);
+            backdrop-filter: blur(20px);
+            z-index: 1002;
+            transition: var(--transition-smooth);
+            border-left: 2px solid var(--sidebar-border);
+            display: flex;
+            flex-direction: column;
+            box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+        
+        .sidebar.active {
+            right: 0;
+        }
+        
+        .sidebar-header {
+            padding: 1.5rem;
+            border-bottom: 2px solid var(--sidebar-border);
+            background: var(--gradient-primary);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .sidebar-header h3 {
+            color: white;
+            margin: 0;
+            font-size: 1.3rem;
+        }
+        
+        .sidebar-close {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: var(--transition-fast);
+        }
+        
+        .sidebar-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+        
+        .sidebar-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .sidebar-tabs {
+            display: flex;
+            border-bottom: 2px solid var(--sidebar-border);
+            margin-bottom: 1.5rem;
+        }
+        
+        .sidebar-tab {
+            flex: 1;
+            padding: 1rem;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition-fast);
+            text-align: center;
+            position: relative;
+        }
+        
+        .sidebar-tab.active {
+            color: var(--primary-main);
+        }
+        
+        .sidebar-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--gradient-primary);
+        }
+        
+        .sidebar-tab:hover:not(.active) {
+            color: var(--text-primary);
+            background: rgba(var(--primary-light-rgb, 165, 214, 167), 0.05);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* Waste Types in Sidebar */
+        .waste-category {
+            margin-bottom: 1.5rem;
+            border: 2px solid var(--border-color);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            transition: var(--transition-fast);
+        }
+        
+        .waste-category:hover {
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-soft);
+        }
+        
+        .waste-category-header {
+            background: var(--primary-pastel);
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        
+        .waste-category-header:hover {
+            background: var(--primary-light);
+        }
+        
+        .waste-category-header:hover .waste-category-icon {
+            color: white;
+        }
+        
+        .waste-category-icon {
+            font-size: 1.5rem;
+            color: var(--primary-main);
+            transition: var(--transition-fast);
+        }
+        
+        .waste-category-title {
+            font-weight: 600;
+            color: var(--text-primary);
+            flex: 1;
+        }
+        
+        .waste-category-toggle {
+            background: none;
+            border: none;
+            color: var(--primary-main);
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition-fast);
+        }
+        
+        .waste-category-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: var(--transition-smooth);
+        }
+        
+        .waste-category.active .waste-category-content {
+            padding: 1rem;
+            max-height: 500px;
+        }
+        
+        .waste-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            background: rgba(var(--primary-pastel-rgb, 165, 214, 167), 0.05);
+            transition: var(--transition-fast);
+        }
+        
+        .waste-item:hover {
+            background: var(--primary-pastel);
+            transform: translateX(5px);
+        }
+        
+        .waste-item-icon {
+            width: 32px;
+            height: 32px;
+            background: var(--primary-pastel);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.75rem;
+            color: var(--primary-main);
+        }
+        
+        .waste-item-details {
+            flex: 1;
+        }
+        
+        .waste-item-name {
+            font-weight: 600;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+        
+        .waste-item-price {
+            font-size: 0.85rem;
+            color: var(--success-color);
+            font-weight: 600;
+        }
+        
+        /* Contact Info in Sidebar */
+        .contact-info-sidebar {
+            padding: 1rem 0;
+        }
+        
+        .contact-item-sidebar {
+            display: flex;
+            align-items: flex-start;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            border-radius: var(--border-radius);
+            background: rgba(var(--primary-pastel-rgb, 165, 214, 167), 0.05);
+            transition: var(--transition-fast);
+        }
+        
+        .contact-item-sidebar:hover {
+            background: var(--primary-pastel);
+            transform: translateX(5px);
+        }
+        
+        .contact-icon-sidebar {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-pastel);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--primary-main);
+            flex-shrink: 0;
+        }
+        
+        .contact-details-sidebar {
+            flex: 1;
+        }
+        
+        .contact-title-sidebar {
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+        
+        .contact-value-sidebar {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }
+        
+        /* Form in Sidebar */
+        .sidebar .form-group {
+            margin-bottom: 1rem;
+        }
+        
+        .sidebar .form-label {
+            font-size: 0.9rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .sidebar .form-control {
+            padding: 0.75rem;
+            font-size: 0.9rem;
+            border-radius: 10px;
+        }
+        
+        .sidebar textarea.form-control {
+            min-height: 80px;
+        }
+        
+        /* Social Links in Sidebar */
+        .social-links-sidebar {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--sidebar-border);
+        }
+        
+        .social-link-sidebar {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem;
+            border-radius: 8px;
+            background: rgba(var(--primary-pastel-rgb, 165, 214, 167), 0.1);
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: var(--transition-fast);
+        }
+        
+        .social-link-sidebar:hover {
+            background: var(--gradient-primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 7rem 0 4rem;
+            background: linear-gradient(135deg, 
+                rgba(var(--primary-light-rgb, 165, 214, 167), 0.1), 
+                rgba(var(--background-main-rgb, 248, 249, 250), 0.2));
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .hero p {
+            font-size: clamp(1rem, 3vw, 1.3rem);
+            margin-bottom: 2rem;
+            color: var(--text-secondary);
+        }
+        
+        .hero-btns {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        
+        /* About Section */
+        .about {
+            background: var(--background-card);
+            border-radius: var(--border-radius-lg);
+            box-shadow: var(--shadow-soft);
+            margin: 2rem auto;
+            overflow: hidden;
+            border: 2px solid var(--border-color);
+            transition: var(--transition-fast);
+        }
+        
+        .about:hover {
+            box-shadow: var(--shadow-medium);
+            transform: translateY(-5px);
+        }
+        
+        .about-content {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-medium);
+            position: relative;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.8s ease;
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        
+        .about-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--gradient-primary);
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        /* Services Section */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .service-card {
+            background: var(--background-card);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition-smooth);
+            border: 2px solid var(--border-color);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-medium);
+            border-color: var(--primary-light);
+        }
+        
+        .service-icon {
+            background: linear-gradient(135deg, var(--primary-pastel), var(--background-card));
+            color: var(--primary-main);
+            font-size: 2.5rem;
+            padding: 2rem;
+            text-align: center;
+            border-bottom: 2px solid var(--border-color);
+        }
+        
+        .service-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-content p {
+            flex-grow: 1;
+        }
+        
+        /* Waste Types Section */
+        .waste-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+        
+        .waste-card {
+            background: var(--background-card);
+            border-radius: var(--border-radius);
+            padding: 1.5rem 1rem;
+            text-align: center;
+            box-shadow: var(--shadow-soft);
+            transition: var(--transition-fast);
+            border: 2px solid var(--border-color);
+        }
+        
+        .waste-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .waste-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-main);
+            transition: var(--transition-fast);
+        }
+        
+        .waste-card:hover .waste-icon {
+            transform: scale(1.1);
+            color: var(--accent-main);
+        }
+        
+        /* Pricing Table - Mobile Optimized */
+        .pricing {
+            background: var(--background-card);
+            border-radius: var(--border-radius-lg);
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: var(--shadow-soft);
+            border: 2px solid var(--border-color);
+        }
+        
+        .price-table-container {
+            overflow-x: auto;
+            border-radius: var(--border-radius);
+            -webkit-overflow-scrolling: touch;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .price-table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 600px;
+        }
+        
+        .price-table th {
+            background: var(--gradient-primary);
+            color: white;
+            font-weight: 600;
+            text-align: left;
+            padding: 1rem;
+            position: sticky;
+            left: 0;
+            white-space: nowrap;
+        }
+        
+        .price-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+        
+        .price-table tbody tr {
+            transition: var(--transition-fast);
+        }
+        
+        .price-table tbody tr:hover {
+            background: rgba(var(--primary-light-rgb, 165, 214, 167), 0.1);
+        }
+        
+        .price-highlight {
+            color: var(--primary-main);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+        
+        .contact-info, .contact-form {
+            flex: 1;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            transition: var(--transition-fast);
+        }
+        
+        .contact-item:hover {
+            background: rgba(var(--primary-light-rgb, 165, 214, 167), 0.05);
+        }
+        
+        .contact-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--primary-pastel);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--primary-main);
+            flex-shrink: 0;
+            font-size: 1.2rem;
+        }
+        
+        /* Stats Section */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 3rem 0;
+        }
+        
+        .stat-card {
+            background: var(--background-card);
+            border-radius: var(--border-radius);
+            padding: 2rem 1rem;
+            text-align: center;
+            border: 2px solid var(--border-color);
+            transition: var(--transition-fast);
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-light);
+            box-shadow: var(--shadow-medium);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-main);
+            margin-bottom: 0.5rem;
+            font-family: 'Nunito', sans-serif;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-main));
+            color: white;
+            padding: 3rem 0 1rem;
+            margin-top: 3rem;
+        }
+        
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: var(--transition-fast);
+            display: flex;
+            align-items: center;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+        
+        .footer-links a i {
+            margin-right: 8px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition-fast);
+        }
+        
+        .social-links a:hover {
+            background: white;
+            color: var(--primary-main);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 1rem;
+            width: 50px;
+            height: 50px;
+            background: var(--gradient-primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: var(--shadow-medium);
+            transition: var(--transition-smooth);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            touch-action: manipulation;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Floating Elements Animation */
+        .floating-elements {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
+        }
+        
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(var(--primary-light-rgb, 165, 214, 167), 0.1);
+            animation: float 20s infinite linear;
+            box-shadow: inset 0 0 20px rgba(var(--primary-main-rgb, 46, 125, 50), 0.1);
+        }
+        
+        @keyframes float {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            25% { transform: translate(20px, -20px) rotate(90deg); }
+            50% { transform: translate(0, -40px) rotate(180deg); }
+            75% { transform: translate(-20px, -20px) rotate(270deg); }
+            100% { transform: translate(0, 0) rotate(360deg); }
+        }
+        
+        /* Mobile-specific optimizations */
+        @media (max-width: 768px) {
+            :root {
+                --container-padding: 1rem;
+                --sidebar-width: var(--sidebar-width-mobile);
+            }
+            
+            .hero {
+                padding: 6rem 0 3rem;
+            }
+            
+            section {
+                padding: 3rem 0;
+            }
+            
+            .hero-btns .btn {
+                width: 100%;
+                max-width: 300px;
+                margin: 0 auto;
+            }
+            
+            .price-table-container {
+                margin: 0 -1rem;
+                width: calc(100% + 2rem);
+            }
+            
+            .price-table {
+                min-width: 500px;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+                align-items: center;
+            }
+            
+            .contact-icon {
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .theme-switcher {
+                bottom: 5rem;
+                left: 1rem;
+            }
+            
+            .theme-btn {
+                width: 44px;
+                height: 44px;
+            }
+            
+            .sidebar-header h3 {
+                font-size: 1.1rem;
+            }
+            
+            .form-container {
+                padding: 1.5rem;
+            }
+            
+            .form-control {
+                padding: 0.875rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 0.75rem;
+            }
+            
+            .btn {
+                padding: 0.875rem 1.5rem;
+                min-height: 48px;
+                font-size: 0.95rem;
+            }
+            
+            .service-card,
+            .waste-card,
+            .stat-card {
+                border-radius: 12px;
+            }
+            
+            nav {
+                width: 100%;
+                max-width: none;
+                padding: 5rem 1.5rem 2rem;
+            }
+            
+            .back-to-top {
+                bottom: 1.5rem;
+                right: 0.75rem;
+                width: 44px;
+                height: 44px;
+            }
+            
+            .price-table th,
+            .price-table td {
+                padding: 0.75rem;
+                font-size: 0.9rem;
+            }
+            
+            .sidebar {
+                width: 100%;
+                right: -100%;
+            }
+            
+            .sidebar.active {
+                right: 0;
+            }
+            
+            .form-group {
+                margin-bottom: 1rem;
+            }
+        }
+        
+        /* Tablet and Desktop */
+        @media (min-width: 769px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            nav {
+                position: static;
+                width: auto;
+                height: auto;
+                background: transparent;
+                backdrop-filter: none;
+                padding: 0;
+                box-shadow: none;
+                overflow: visible;
+            }
+            
+            nav ul {
+                display: flex;
+                gap: 1rem;
+            }
+            
+            nav ul li a {
+                padding: 0.5rem 1.25rem;
+                border-radius: 50px;
+                font-size: 0.95rem;
+            }
+            
+            nav ul li a:hover,
+            nav ul li a.active {
+                transform: translateY(-2px);
+            }
+            
+            .about-content,
+            .contact-container {
+                flex-direction: row;
+            }
+            
+            .hero-btns {
+                flex-direction: row;
+                justify-content: center;
+                gap: 1.5rem;
+            }
+            
+            .waste-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .stats {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            :root {
+                --container-padding: 2rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        /* Dark mode adjustments */
+        @media (prefers-color-scheme: dark) {
+            body.theme-dark-green {
+                --background-main: #1A1F1A;
+                --background-card: #2D332D;
+                --text-primary: #E0E6DC;
+                --text-secondary: #A5B0A8;
+                --border-color: #3D443D;
+                --sidebar-bg: rgba(45, 51, 45, 0.98);
+                --form-bg: #2D332D;
+                --form-border: #3D443D;
+                --form-text: #E0E6DC;
+                --form-placeholder: #A5B0A8;
+            }
+            
+            body.theme-bright-blue {
+                --background-main: #0A1929;
+                --background-card: #1A2B3C;
+                --text-primary: #E3F2FD;
+                --text-secondary: #B0BEC5;
+                --border-color: #2C3E50;
+                --sidebar-bg: rgba(26, 43, 60, 0.98);
+                --form-bg: #1E2A38;
+                --form-border: #3A506B;
+                --form-text: #E3F2FD;
+                --form-placeholder: #78909C;
+            }
+        }
+        
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+            
+            .floating-element {
+                animation: none;
+            }
+        }
+        
+        /* Print styles */
+        @media print {
+            .mobile-menu-btn,
+            .back-to-top,
+            .theme-switcher,
+            .social-links,
+            .hero-btns,
+            .sidebar-toggle,
+            .sidebar {
+                display: none !important;
+            }
+            
+            body {
+                background: white !important;
+                color: black !important;
+            }
+            
+            .form-control {
+                border: 1px solid #ccc !important;
+                background: white !important;
+                color: black !important;
+            }
+        }
+    </style>
+</head>
+<body class="theme-dark-green">
+    <!-- Theme Switcher -->
+    <div class="theme-switcher">
+        <button class="theme-btn dark-green active" data-theme="dark-green" aria-label="Ubah ke tema Hijau Tua">
+            <i class="fas fa-leaf"></i>
+        </button>
+        <button class="theme-btn bright-blue" data-theme="bright-blue" aria-label="Ubah ke tema Biru Cerah">
+            <i class="fas fa-tint"></i>
+        </button>
+    </div>
+    
+    <!-- Sidebar untuk Jenis Sampah dan Kontak -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h3><i class="fas fa-info-circle"></i> Info Cepat</h3>
+            <button class="sidebar-close" id="sidebarClose">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="sidebar-content">
+            <div class="sidebar-tabs">
+                <button class="sidebar-tab active" data-tab="waste"><i class="fas fa-trash"></i> Jenis Sampah</button>
+                <button class="sidebar-tab" data-tab="contact"><i class="fas fa-phone"></i> Kontak</button>
+            </div>
+            
+            <!-- Tab Jenis Sampah -->
+            <div class="tab-content active" id="wasteTab">
+                <div class="waste-category active">
+                    <div class="waste-category-header">
+                        <div class="waste-category-icon">
+                            <i class="fas fa-plastic-bottle"></i>
+                        </div>
+                        <div class="waste-category-title">Plastik</div>
+                        <button class="waste-category-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="waste-category-content">
+                        <div class="waste-item">
+                            <div class="waste-item-icon">
+                                <i class="fas fa-bottle-water"></i>
+                            </div>
+                            <div class="waste-item-details">
+                                <div class="waste-item-name">PET (Botol Air)</div>
+                                <div class="waste-item-price">Rp 8.500/kg</div>
+                            </div>
+                        </div>
+                        <div class="waste-item">
+                            <div class="waste-item-icon">
+                                <i class="fas fa-wine-bottle"></i>
+                            </div>
+                            <div class="waste-item-details">
+                                <div class="waste-item-name">HDPE (Galon)</div>
+                                <div class="waste-item-price">Rp 7.200/kg</div>
+                            </div>
+                        </div>
+                        <div class="waste-item">
+                            <div class="waste-item-icon">
+                                <i class="fas fa-cookie-bite"></i>
+                            </div>
+                            <div class="waste-item-details">
+                                <div class="waste-item-name">PP (Wadah Makanan)</div>
+                                <div class="waste-item-price">Rp 6.800/kg</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="waste-category">
+                    <div class="waste-category-header">
+                        <div class="waste-category-icon">
+                            <i class="fas fa-scroll"></i>
+                        </div>
+                        <div class="waste-category-title">Kertas</div>
+                        <button class="waste-category-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="waste-category-content">
+                        <div class="waste-item">
+                            <div class="waste-item-icon">
+                                <i class="fas fa-newspaper"></i>
+                            </div>
+                            <div class="waste-item-details">
+                                <div class="waste-item-name">Koran</div>
+                                <div class="waste-item-price">Rp 3.200/kg</div>
+                            </div>
+                        </div>
+                        <div class="waste-item">
+                            <div class="waste-item-icon">
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <div class="waste-item-details">
+                                <div class="waste-item-name">Kardus</div>
+                                <div class="waste-item-price">Rp 4.500/kg</div>
+                            </div>
+                        </div>
+                        <div class="waste-item">
+                            <div class="waste-item-icon">
+                                <i class="fas fa-book"></i>
+                            </div>
+                            <div class="waste-item-details">
+                                <div class="waste-item-name">Buku/Majalah</div>
+                                <div class="waste-item-price">Rp 2.800/kg</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="waste-category">
+                    <div class="waste-category-header">
+                        <div class="waste-category-icon">
+                            <i class="fas fa-glass-whiskey"></i>
+                        </div>
+                        <div class="waste-category-title">Kaca & Logam</div>
+                        <button class="waste-category-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="waste-category-content">
+                        <div class="waste-item">
+                            <div class="waste-item-icon">
+                                <i class="fas fa-wine-bottle"></i>
+                            </div>
+                            <div class="waste-item-details">
+                                <div class="waste-item-name">Botol Kaca</div>
+                                <div class="waste-item-price">Rp 2.500/kg</div>
+                            </div>
+                        </div>
+                        <div class="waste-item">
+                            <div class="waste-item-icon">
+                                <i class="fas fa-beer"></i>
+                            </div>
+                            <div class="waste-item-details">
+                                <div class="waste-item-name">Kaleng Aluminium</div>
+                                <div class="waste-item-price">Rp 22.000/kg</div>
+                            </div>
+                        </div>
+                        <div class="waste-item">
+                            <div class="waste-item-icon">
+                                <i class="fas fa-bolt"></i>
+                            </div>
+                            <div class="waste-item-details">
+                                <div class="waste-item-name">Tembaga</div>
+                                <div class="waste-item-price">Rp 65.000/kg</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="waste-category">
+                    <div class="waste-category-header">
+                        <div class="waste-category-icon">
+                            <i class="fas fa-microchip"></i>
+                        </div>
+                        <div class="waste-category-title">Elektronik</div>
+                        <button class="waste-category-toggle">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="waste-category-content">
+                        <div class="waste-item">
+                            <div class="waste-item-icon">
+                                <i class="fas fa-mobile-alt"></i>
+                            </div>
+                            <div class="waste-item-details">
+                                <div class="waste-item-name">HP/Laptop</div>
+                                <div class="waste-item-price">Harga Negosiasi</div>
+                            </div>
+                        </div>
+                        <div class="waste-item">
+                            <div class="waste-item-icon">
+                                <i class="fas fa-plug"></i>
+                            </div>
+                            <div class="waste-item-details">
+                                <div class="waste-item-name">Kabel Listrik</div>
+                                <div class="waste-item-price">Rp 35.000/kg</div>
+                            </div>
+                        </div>
+                        <div class="waste-item">
+                            <div class="waste-item-icon">
+                                <i class="fas fa-battery-full"></i>
+                            </div>
+                            <div class="waste-item-details">
+                                <div class="waste-item-name">Baterai</div>
+                                <div class="waste-item-price">Gratis Penanganan</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tab Kontak -->
+            <div class="tab-content" id="contactTab">
+                <div class="contact-info-sidebar">
+                    <div class="contact-item-sidebar">
+                        <div class="contact-icon-sidebar">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details-sidebar">
+                            <div class="contact-title-sidebar">Alamat</div>
+                            <div class="contact-value-sidebar">
+                                Zindo Business Park Blok B-15<br>
+                                Jl. Lingkar Teknologi No. 88<br>
+                                Jakarta Barat 10635
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item-sidebar">
+                        <div class="contact-icon-sidebar">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details-sidebar">
+                            <div class="contact-title-sidebar">Telepon</div>
+                            <div class="contact-value-sidebar">
+                                <strong>Customer Service:</strong> 1500-888<br>
+                                <strong>WhatsApp:</strong> 0812-3456-7890<br>
+                                <strong>Emergency:</strong> 0813-4567-8901
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item-sidebar">
+                        <div class="contact-icon-sidebar">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <div class="contact-details-sidebar">
+                            <div class="contact-title-sidebar">Jam Operasi</div>
+                            <div class="contact-value-sidebar">
+                                <strong>Senin-Jumat:</strong> 07.00-21.00 WIB<br>
+                                <strong>Sabtu:</strong> 08.00-17.00 WIB<br>
+                                <strong>Minggu:</strong> 09.00-15.00 WIB
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item-sidebar">
+                        <div class="contact-icon-sidebar">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details-sidebar">
+                            <div class="contact-title-sidebar">Email</div>
+                            <div class="contact-value-sidebar">
+                                <strong>Umum:</strong> info@Zindocycle.id<br>
+                                <strong>Kerjasama:</strong> partner@Zindocycle.id<br>
+                                <strong>Pengaduan:</strong> complaint@Zindocycle.id
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Contact Form in Sidebar -->
+                <div class="quick-contact-form">
+                    <h4><i class="fas fa-paper-plane"></i> Pesan Cepat</h4>
+                    <form id="quickContactForm">
+                        <div class="form-group">
+                            <label for="quickName" class="form-label"><i class="fas fa-user"></i> Nama Anda</label>
+                            <input type="text" id="quickName" class="form-control" placeholder="Masukkan nama Anda" required>
+                            <div class="form-error-message" id="quickNameError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="quickPhone" class="form-label"><i class="fas fa-phone"></i> WhatsApp/Telepon</label>
+                            <input type="tel" id="quickPhone" class="form-control" placeholder="0812 3456 7890" required>
+                            <div class="form-error-message" id="quickPhoneError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="quickMessage" class="form-label"><i class="fas fa-comment"></i> Pesan Anda</label>
+                            <textarea id="quickMessage" class="form-control" placeholder="Tulis pesan Anda di sini..." rows="3" required></textarea>
+                            <div class="form-error-message" id="quickMessageError"></div>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-small" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i> Kirim Pesan
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="social-links-sidebar">
+                    <a href="#" class="social-link-sidebar" aria-label="WhatsApp">
+                        <i class="fab fa-whatsapp"></i>
+                    </a>
+                    <a href="#" class="social-link-sidebar" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="social-link-sidebar" aria-label="Facebook">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="social-link-sidebar" aria-label="Email">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Header -->
+    <header>
+        <div class="container header-container">
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-recycle"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>Zindo Cycle</h1>
+                    <span>Bank Sampah Modern</span>
+                </div>
+            </div>
+            
+            <div class="header-actions">
+                <button class="sidebar-toggle" id="sidebarToggle" aria-label="Buka sidebar info">
+                    <i class="fas fa-info-circle"></i>
+                </button>
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            
+            <div class="nav-overlay" id="navOverlay"></div>
+            
+            <nav id="mainNav">
+                <ul>
+                    <li><a href="#home" class="active"><i class="fas fa-home"></i> Beranda</a></li>
+                    <li><a href="#about"><i class="fas fa-info-circle"></i> Tentang</a></li>
+                    <li><a href="#services"><i class="fas fa-concierge-bell"></i> Layanan</a></li>
+                    <li><a href="#stats"><i class="fas fa-chart-line"></i> Statistik</a></li>
+                    <li><a href="#waste"><i class="fas fa-trash-alt"></i> Jenis Sampah</a></li>
+                    <li><a href="#pricing"><i class="fas fa-tags"></i> Harga</a></li>
+                    <li><a href="#contact"><i class="fas fa-phone"></i> Kontak</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Transformasi Sampah, Masa Depan Cerah</h1>
+                <p>Zindo Cycle menghadirkan revolusi pengelolaan sampah dengan teknologi mutakhir dan pendekatan berkelanjutan. Bergabunglah dalam gerakan menciptakan dunia yang lebih bersih dan hijau.</p>
+                <div class="hero-btns">
+                    <a href="#about" class="btn"><i class="fas fa-play-circle"></i> Mulai Jelajahi</a>
+                    <a href="#contact" class="btn btn-secondary"><i class="fas fa-user-plus"></i> Gabung tim kami</a>
+                </div>
+            </div>
+        </div>
+        <div class="floating-elements">
+            <div class="floating-element" style="width: 80px; height: 80px; top: 20%; left: 10%; animation-delay: 0s;"></div>
+            <div class="floating-element" style="width: 120px; height: 120px; top: 60%; right: 15%; animation-delay: -5s;"></div>
+            <div class="floating-element" style="width: 60px; height: 60px; bottom: 20%; left: 20%; animation-delay: -10s;"></div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats">
+        <div class="container">
+            <div class="stats">
+                <div class="stat-card">
+                    <div class="stat-number" data-count="1250">0</div>
+                    <p>Ton Sampah Diolah</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-count="5200">0</div>
+                    <p>Nasabah Aktif</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-count="85">0</div>
+                    <p>Persen Didaur Ulang</p>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" data-count="24">0</div>
+                    <p>Jam Layanan</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Visi Misi Zindo Cycle</h2>
+            </div>
+            <div class="section-subtitle">
+                <p>Mengubah paradigma pengelolaan sampah menjadi peluang ekonomi dan ekologi yang berkelanjutan</p>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Revolusi Ekonomi Sirkular</h3>
+                    <p>Zindo Cycle didirikan pada tahun 2019 dengan misi menciptakan sistem pengelolaan sampah terintegrasi yang menghubungkan masyarakat, teknologi, dan industri daur ulang.</p>
+                    <p>Kami mengembangkan ekosistem daur ulang yang tidak hanya membersihkan lingkungan, tetapi juga menciptakan lapangan kerja dan meningkatkan kesejahteraan masyarakat.</p>
+                    <p>Dengan teknologi AI untuk pemilahan sampah dan platform digital untuk transparansi, kami memastikan setiap kilogram sampah mendapatkan nilai terbaiknya.</p>
+                    <div style="margin-top: 2rem;">
+                        <a href="#services" class="btn"><i class="fas fa-arrow-right"></i> Lihat Layanan</a>
+                        <a href="#contact" class="btn btn-outline" style="margin-left: 1rem;"><i class="fas fa-download"></i> Brosur</a>
+                    </div>
+                </div>
+                <div class="about-image">
+                    <img src="https://i.pinimg.com/736x/e0/1d/9e/e01d9e47996fae025c7de5699d48c13d.jpg" alt="Fasilitas Daur Ulang EcoCycle" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Layanan Unggulan</h2>
+            </div>
+            <div class="section-subtitle">
+                <p>Solusi lengkap untuk semua kebutuhan pengelolaan sampah Anda</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-mobile-alt"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Bank Sampah Digital</h3>
+                        <p>Aplikasi mobile untuk setor sampah, pantau saldo, dan penarikan dana. Sistem bunga kompetitif dan real-time tracking.</p>
+                        <a href="#contact" class="btn" style="margin-top: auto;">Pelajari</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>AI Sorting System</h3>
+                        <p>Teknologi AI untuk pemilahan sampah otomatis dengan akurasi 95%. Efisien dan mengurangi kontaminasi material.</p>
+                        <a href="#contact" class="btn" style="margin-top: auto;">Detail</a>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-truck-loading"></i>
+                    </div>
+                    <div class="service-content">
+                        <h3>Smart Pickup</h3>
+                        <p>Penjemputan pintar dengan routing optimal. Notifikasi real-time dan sistem pemesanan 24/7 melalui aplikasi.</p>
+                        <a href="#contact" class="btn" style="margin-top: auto;">Jadwalkan</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waste Types Section -->
+    <section id="waste">
+        <div class="container">
+            <div class="section-title">
+                <h2>Material yang Diterima</h2>
+            </div>
+            <div class="section-subtitle">
+                <p>Kami menerima berbagai jenis material untuk diproses dengan standar daur ulang tertinggi</p>
+            </div>
+            <div class="waste-grid">
+                <div class="waste-card">
+                    <div class="waste-icon">
+                        <i class="fas fa-prescription-bottle"></i>
+                    </div>
+                    <h4>Plastik</h4>
+                    <p>PET, HDPE, PP, LDPE</p>
+                </div>
+                
+                <div class="waste-card">
+                    <div class="waste-icon">
+                        <i class="fas fa-scroll"></i>
+                    </div>
+                    <h4>Kertas</h4>
+                    <p>Koran, kardus, majalah</p>
+                </div>
+                
+                <div class="waste-card">
+                    <div class="waste-icon">
+                        <i class="fas fa-glass-whiskey"></i>
+                    </div>
+                    <h4>Kaca</h4>
+                    <p>Botol, gelas, kaca jendela</p>
+                </div>
+                
+                <div class="waste-card">
+                    <div class="waste-icon">
+                        <i class="fas fa-microchip"></i>
+                    </div>
+                    <h4>Elektronik</h4>
+                    <p>PCB, komponen, kabel</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Harga Material</h2>
+            </div>
+            <div class="section-subtitle">
+                <p>Harga transparan berdasarkan kualitas material. Update real-time sesuai pasar global</p>
+            </div>
+            
+            <div class="price-table-container">
+                <table class="price-table">
+                    <thead>
+                        <tr>
+                            <th>Material</th>
+                            <th>Kualitas</th>
+                            <th>Harga (Rp/kg)</th>
+                            <th>Syarat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Plastik PET</strong></td>
+                            <td>Grade A++</td>
+                            <td class="price-highlight">9.200</td>
+                            <td>Transparan, tanpa label</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Plastik HDPE</strong></td>
+                            <td>Grade A+</td>
+                            <td class="price-highlight">8.500</td>
+                            <td>Bersih, putih natural</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kardus Food Grade</strong></td>
+                            <td>Premium</td>
+                            <td>5.800</td>
+                            <td>Kering, tanpa kontaminasi</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kertas Koran</strong></td>
+                            <td>Standard</td>
+                            <td>3.200</td>
+                            <td>Tidak sobek, kering</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Kaca Float</strong></td>
+                            <td>Grade A</td>
+                            <td>3.500</td>
+                            <td>Tanpa keramik/logam</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Aluminium Murni</strong></td>
+                            <td>Grade AA</td>
+                            <td class="price-highlight">28.500</td>
+                            <td>Bersih dari cat/plastik</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Tembaga Kabel</strong></td>
+                            <td>Grade AAA</td>
+                            <td class="price-highlight">75.000</td>
+                            <td>Isolasi sudah dibersihkan</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hubungi Kami</h2>
+            </div>
+            <div class="section-subtitle">
+                <p>Tim kami siap membantu Anda mulai dari konsultasi hingga implementasi sistem</p>
+            </div>
+            
+            <div class="contact-container">
+                <div class="contact-info form-container">
+                    <h3>Kantor Pusat</h3>
+                    <p>Zindo Innovation Hub, kawasan khusus pengelolaan sampah modern.</p>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div>
+                            <h4>Alamat</h4>
+                            <p>Zindo Cycle Business Park Blok B-15<br>Jl. Lingkar Teknologi No. 88<br>Jakarta Barat 10635</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone-volume"></i>
+                        </div>
+                        <div>
+                            <h4>Hotline</h4>
+                            <p>1500-888 (24/7 Customer Service)<br>+62 22 8765 4321 (International)</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope-open-text"></i>
+                        </div>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@Zindoaja.id<br>partnership@Zindoaja.id</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Main Registration Form -->
+                <div class="contact-form form-container">
+                    <div class="form-header">
+                        <h3><i class="fas fa-user-plus"></i> Formulir Keanggotaan</h3>
+                        <p>Isi data diri Anda untuk bergabung dengan Zindo Cycle</p>
+                    </div>
+                    
+                    <form id="registrationForm" class="main-form">
+                        <div class="form-group">
+                            <label for="name" class="form-label required"><i class="fas fa-user-tie"></i> Nama Lengkap</label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Masukkan nama lengkap Anda" required>
+                            <div class="form-error-message" id="nameError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email" class="form-label required"><i class="fas fa-envelope"></i> Email</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="email@domain.com" required>
+                            <div class="form-error-message" id="emailError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone" class="form-label required"><i class="fas fa-mobile-alt"></i> WhatsApp</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="0812 3456 7890" required>
+                            <div class="form-error-message" id="phoneError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="address" class="form-label required"><i class="fas fa-map-marked-alt"></i> Alamat Lengkap</label>
+                            <textarea id="address" name="address" class="form-control" placeholder="Alamat rumah/kantor lengkap" rows="3" required></textarea>
+                            <div class="form-error-message" id="addressError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="waste-type" class="form-label required"><i class="fas fa-stream"></i> Jenis Sampah Dominan</label>
+                            <select id="waste-type" name="waste-type" class="form-control" required>
+                                <option value="">Pilih jenis sampah</option>
+                                <option value="plastik">Plastik</option>
+                                <option value="kertas">Kertas</option>
+                                <option value="kaca">Kaca</option>
+                                <option value="logam">Logam & Elektronik</option>
+                                <option value="campuran">Campuran</option>
+                            </select>
+                            <div class="form-error-message" id="wasteTypeError"></div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="volume" class="form-label required"><i class="fas fa-weight-hanging"></i> Volume per Bulan (kg)</label>
+                            <input type="number" id="volume" name="volume" class="form-control" min="10" placeholder="Minimum 10 kg" required>
+                            <div class="form-error-message" id="volumeError"></div>
+                        </div>
+                        
+                        <div class="form-check">
+                            <input type="checkbox" id="agreeTerms" name="agreeTerms" class="form-check-input" required>
+                            <label for="agreeTerms" class="form-check-label">
+                                Saya setuju dengan <a href="#" style="color: var(--primary-main);">syarat dan ketentuan</a> EcoCycle
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn" style="width: 100%; padding: 1rem; margin-top: 1.5rem;">
+                            <i class="fas fa-paper-plane"></i> Ajukan Keanggotaan
+                        </button>
+                        
+                        <div class="form-footer">
+                            <p><i class="fas fa-info-circle"></i> Data Anda aman dan hanya digunakan untuk keperluan keanggotaan.</p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-column">
+                    <h3>Zindo Cycle</h3>
+                    <p>Mengubah sampah menjadi nilai melalui teknologi dan inovasi untuk masa depan yang berkelanjutan.</p>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Navigasi</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home"><i class="fas fa-chevron-right"></i> Beranda</a></li>
+                        <li><a href="#about"><i class="fas fa-chevron-right"></i> Tentang Kami</a></li>
+                        <li><a href="#services"><i class="fas fa-chevron-right"></i> Layanan</a></li>
+                        <li><a href="#pricing"><i class="fas fa-chevron-right"></i> Harga</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Layanan</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Bank Sampah Digital</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Smart Pickup</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Konsultasi Bisnis</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Pelatihan</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Kebijakan Privasi</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Syarat & Ketentuan</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> FAQ</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Bantuan</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2019 Zindo Cycle Bank Sampah. Hak cipta dilindungi undang-undang.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <a href="#home" class="back-to-top" id="backToTop" aria-label="Kembali ke atas">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        // Theme Switcher
+        const themeButtons = document.querySelectorAll('.theme-btn');
+        const body = document.body;
+        const themeColorMeta = document.getElementById('themeColorMeta');
+        
+        themeButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const theme = button.getAttribute('data-theme');
+                
+                themeButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                body.className = `theme-${theme}`;
+                
+                const themeColor = theme === 'dark-green' ? '#1B5E20' : '#1565C0';
+                themeColorMeta.setAttribute('content', themeColor);
+                localStorage.setItem('preferredTheme', theme);
+            });
+        });
+        
+        const savedTheme = localStorage.getItem('preferredTheme') || 'dark-green';
+        const savedThemeButton = document.querySelector(`.theme-btn[data-theme="${savedTheme}"]`);
+        if (savedThemeButton) {
+            savedThemeButton.click();
+        }
+        
+        // Sidebar Functionality
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebarClose = document.getElementById('sidebarClose');
+        const sidebarTabs = document.querySelectorAll('.sidebar-tab');
+        const tabContents = document.querySelectorAll('.tab-content');
+        
+        // Toggle sidebar
+        function toggleSidebar() {
+            sidebar.classList.toggle('active');
+            document.body.style.overflow = sidebar.classList.contains('active') ? 'hidden' : '';
+        }
+        
+        sidebarToggle.addEventListener('click', toggleSidebar);
+        sidebarClose.addEventListener('click', toggleSidebar);
+        
+        // Close sidebar when clicking outside on mobile
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768 && 
+                sidebar.classList.contains('active') &&
+                !sidebar.contains(e.target) && 
+                e.target !== sidebarToggle) {
+                toggleSidebar();
+            }
+        });
+        
+        // Tab switching
+        sidebarTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.getAttribute('data-tab');
+                
+                // Remove active class from all tabs and contents
+                sidebarTabs.forEach(t => t.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked tab and corresponding content
+                tab.classList.add('active');
+                document.getElementById(`${tabId}Tab`).classList.add('active');
+            });
+        });
+        
+        // Waste category accordion
+        const wasteCategories = document.querySelectorAll('.waste-category');
+        wasteCategories.forEach(category => {
+            const header = category.querySelector('.waste-category-header');
+            const toggle = category.querySelector('.waste-category-toggle');
+            
+            header.addEventListener('click', () => {
+                category.classList.toggle('active');
+                
+                // Update toggle icon
+                const icon = toggle.querySelector('i');
+                if (category.classList.contains('active')) {
+                    icon.className = 'fas fa-chevron-up';
+                } else {
+                    icon.className = 'fas fa-chevron-down';
+                }
+            });
+        });
+        
+        // FORM VALIDATION AND SUBMISSION
+        
+        // Quick contact form validation and submission
+        const quickContactForm = document.getElementById('quickContactForm');
+        if (quickContactForm) {
+            quickContactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('quickName').value;
+                const phone = document.getElementById('quickPhone').value;
+                const message = document.getElementById('quickMessage').value;
+                
+                // Reset errors
+                clearFormErrors('quick');
+                
+                // Validation
+                let isValid = true;
+                
+                if (!name.trim()) {
+                    showError('quickNameError', 'Nama wajib diisi');
+                    document.getElementById('quickName').classList.add('error');
+                    isValid = false;
+                }
+                
+                if (!phone.trim()) {
+                    showError('quickPhoneError', 'Nomor telepon wajib diisi');
+                    document.getElementById('quickPhone').classList.add('error');
+                    isValid = false;
+                } else if (!/^[0-9+\-\s]+$/.test(phone)) {
+                    showError('quickPhoneError', 'Format nomor telepon tidak valid');
+                    document.getElementById('quickPhone').classList.add('error');
+                    isValid = false;
+                }
+                
+                if (!message.trim()) {
+                    showError('quickMessageError', 'Pesan wajib diisi');
+                    document.getElementById('quickMessage').classList.add('error');
+                    isValid = false;
+                } else if (message.length < 10) {
+                    showError('quickMessageError', 'Pesan minimal 10 karakter');
+                    document.getElementById('quickMessage').classList.add('error');
+                    isValid = false;
+                }
+                
+                if (!isValid) return;
+                
+                // If valid, submit form
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+                submitBtn.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    // Show success message
+                    alert(`Terima kasih ${name}! Pesan Anda telah dikirim. Kami akan menghubungi Anda di ${phone} segera.`);
+                    
+                    // Reset form
+                    quickContactForm.reset();
+                    
+                    // Reset button
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    
+                    // Show success state
+                    document.getElementById('quickName').classList.add('success');
+                    document.getElementById('quickPhone').classList.add('success');
+                    document.getElementById('quickMessage').classList.add('success');
+                    
+                    // Clear success state after 3 seconds
+                    setTimeout(() => {
+                        document.getElementById('quickName').classList.remove('success');
+                        document.getElementById('quickPhone').classList.remove('success');
+                        document.getElementById('quickMessage').classList.remove('success');
+                    }, 3000);
+                }, 1500);
+            });
+        }
+        
+        // Main registration form validation and submission
+        const registrationForm = document.getElementById('registrationForm');
+        if (registrationForm) {
+            registrationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form values
+                const name = document.getElementById('name').value;
+                const email = document.getElementById('email').value;
+                const phone = document.getElementById('phone').value;
+                const address = document.getElementById('address').value;
+                const wasteType = document.getElementById('waste-type').value;
+                const volume = document.getElementById('volume').value;
+                const agreeTerms = document.getElementById('agreeTerms').checked;
+                
+                // Reset errors
+                clearFormErrors('main');
+                
+                // Validation
+                let isValid = true;
+                
+                if (!name.trim()) {
+                    showError('nameError', 'Nama lengkap wajib diisi');
+                    document.getElementById('name').classList.add('error');
+                    isValid = false;
+                }
+                
+                if (!email.trim()) {
+                    showError('emailError', 'Email wajib diisi');
+                    document.getElementById('email').classList.add('error');
+                    isValid = false;
+                } else if (!isValidEmail(email)) {
+                    showError('emailError', 'Format email tidak valid');
+                    document.getElementById('email').classList.add('error');
+                    isValid = false;
+                }
+                
+                if (!phone.trim()) {
+                    showError('phoneError', 'Nomor WhatsApp wajib diisi');
+                    document.getElementById('phone').classList.add('error');
+                    isValid = false;
+                } else if (!/^[0-9+\-\s]+$/.test(phone)) {
+                    showError('phoneError', 'Format nomor telepon tidak valid');
+                    document.getElementById('phone').classList.add('error');
+                    isValid = false;
+                }
+                
+                if (!address.trim()) {
+                    showError('addressError', 'Alamat wajib diisi');
+                    document.getElementById('address').classList.add('error');
+                    isValid = false;
+                } else if (address.length < 10) {
+                    showError('addressError', 'Alamat minimal 10 karakter');
+                    document.getElementById('address').classList.add('error');
+                    isValid = false;
+                }
+                
+                if (!wasteType) {
+                    showError('wasteTypeError', 'Pilih jenis sampah dominan');
+                    document.getElementById('waste-type').classList.add('error');
+                    isValid = false;
+                }
+                
+                if (!volume) {
+                    showError('volumeError', 'Volume sampah wajib diisi');
+                    document.getElementById('volume').classList.add('error');
+                    isValid = false;
+                } else if (parseInt(volume) < 10) {
+                    showError('volumeError', 'Volume minimal 10 kg per bulan');
+                    document.getElementById('volume').classList.add('error');
+                    isValid = false;
+                }
+                
+                if (!agreeTerms) {
+                    showError('agreeTermsError', 'Anda harus menyetujui syarat dan ketentuan');
+                    document.getElementById('agreeTerms').classList.add('error');
+                    isValid = false;
+                }
+                
+                if (!isValid) return;
+                
+                // If valid, submit form
+                const submitBtn = this.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+                submitBtn.disabled = true;
+                
+                // Simulate API call
+                setTimeout(() => {
+                    // Create success modal
+                    const modal = document.createElement('div');
+                    modal.style.cssText = `
+                        position: fixed;
+                        top: 0;
+                        left: 0;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(0, 0, 0, 0.7);
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        z-index: 2000;
+                        padding: 1rem;
+                    `;
+                    
+                    modal.innerHTML = `
+                        <div class="form-container" style="max-width: 500px; width: 100%; text-align: center;">
+                            <i class="fas fa-check-circle" style="
+                                font-size: 3rem;
+                                color: var(--success-color);
+                                margin-bottom: 1rem;
+                            "></i>
+                            <h3 style="
+                                color: var(--primary-main);
+                                margin-bottom: 1rem;
+                            ">Pendaftaran Berhasil!</h3>
+                            <p style="
+                                color: var(--text-secondary);
+                                margin-bottom: 1.5rem;
+                                line-height: 1.6;
+                            ">
+                                Terima kasih <strong>${name}</strong>! Pendaftaran keanggotaan EcoCycle Anda telah berhasil.<br>
+                                Tim kami akan menghubungi Anda di:<br>
+                                <strong>${email}</strong> dan <strong>${phone}</strong><br>
+                                dalam 1x24 jam untuk proses selanjutnya.
+                            </p>
+                            <button onclick="this.parentElement.parentElement.remove()" class="btn">
+                                <i class="fas fa-check"></i> Tutup
+                            </button>
+                        </div>
+                    `;
+                    
+                    document.body.appendChild(modal);
+                    
+                    // Reset form
+                    registrationForm.reset();
+                    
+                    // Reset button
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                }, 1500);
+            });
+        }
+        
+        // Helper functions for form validation
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            if (errorElement) {
+                errorElement.textContent = message;
+                errorElement.classList.add('show');
+            }
+        }
+        
+        function clearFormErrors(formType) {
+            const errorElements = document.querySelectorAll(`#${formType}Form .form-error-message`);
+            const inputElements = document.querySelectorAll(`#${formType}Form .form-control`);
+            
+            errorElements.forEach(el => {
+                el.classList.remove('show');
+                el.textContent = '';
+            });
+            
+            inputElements.forEach(el => {
+                el.classList.remove('error');
+                el.classList.remove('success');
+            });
+        }
+        
+        function isValidEmail(email) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return emailRegex.test(email);
+        }
+        
+        // Real-time validation for main form
+        const mainFormInputs = document.querySelectorAll('#registrationForm .form-control');
+        mainFormInputs.forEach(input => {
+            input.addEventListener('blur', function() {
+                validateSingleField(this);
+            });
+            
+            input.addEventListener('input', function() {
+                // Clear error on input
+                const fieldName = this.id;
+                const errorElement = document.getElementById(`${fieldName}Error`);
+                if (errorElement) {
+                    errorElement.classList.remove('show');
+                    this.classList.remove('error');
+                }
+            });
+        });
+        
+        function validateSingleField(field) {
+            const fieldName = field.id;
+            const value = field.value.trim();
+            
+            switch(fieldName) {
+                case 'name':
+                    if (!value) {
+                        showError('nameError', 'Nama lengkap wajib diisi');
+                        field.classList.add('error');
+                    }
+                    break;
+                    
+                case 'email':
+                    if (!value) {
+                        showError('emailError', 'Email wajib diisi');
+                        field.classList.add('error');
+                    } else if (!isValidEmail(value)) {
+                        showError('emailError', 'Format email tidak valid');
+                        field.classList.add('error');
+                    }
+                    break;
+                    
+                case 'phone':
+                    if (!value) {
+                        showError('phoneError', 'Nomor WhatsApp wajib diisi');
+                        field.classList.add('error');
+                    } else if (!/^[0-9+\-\s]+$/.test(value)) {
+                        showError('phoneError', 'Format nomor telepon tidak valid');
+                        field.classList.add('error');
+                    }
+                    break;
+                    
+                case 'address':
+                    if (!value) {
+                        showError('addressError', 'Alamat wajib diisi');
+                        field.classList.add('error');
+                    } else if (value.length < 10) {
+                        showError('addressError', 'Alamat minimal 10 karakter');
+                        field.classList.add('error');
+                    }
+                    break;
+                    
+                case 'volume':
+                    if (!value) {
+                        showError('volumeError', 'Volume sampah wajib diisi');
+                        field.classList.add('error');
+                    } else if (parseInt(value) < 10) {
+                        showError('volumeError', 'Volume minimal 10 kg per bulan');
+                        field.classList.add('error');
+                    }
+                    break;
+            }
+        }
+        
+        // Mobile Navigation
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        const navOverlay = document.getElementById('navOverlay');
+        
+        function toggleMobileMenu() {
+            mobileMenuBtn.classList.toggle('active');
+            mainNav.classList.toggle('active');
+            navOverlay.classList.toggle('active');
+            document.body.style.overflow = mainNav.classList.contains('active') ? 'hidden' : '';
+        }
+        
+        mobileMenuBtn.addEventListener('click', toggleMobileMenu);
+        navOverlay.addEventListener('click', toggleMobileMenu);
+        
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerHeight = document.querySelector('header').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Back to top button visibility
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+            
+            updateActiveNavLink();
+        });
+        
+        // Update active navigation link
+        function updateActiveNavLink() {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let currentSection = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop - 100;
+                const sectionHeight = section.clientHeight;
+                
+                if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
+                    currentSection = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${currentSection}`) {
+                    link.classList.add('active');
+                }
+            });
+        }
+        
+        // Animated number counters
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            const speed = 200;
+            
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-count');
+                const count = +counter.innerText;
+                const increment = target / speed;
+                
+                if (count < target) {
+                    counter.innerText = Math.ceil(count + increment);
+                    setTimeout(animateCounters, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            });
+        }
+        
+        // Intersection Observer for animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animated');
+                    
+                    if (entry.target.id === 'stats') {
+                        animateCounters();
+                    }
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Handle orientation change for mobile
+        let orientationTimeout;
+        window.addEventListener('orientationchange', function() {
+            clearTimeout(orientationTimeout);
+            orientationTimeout = setTimeout(() => {
+                window.scrollTo(0, 0);
+            }, 100);
+        });
+        
+        // Prevent zoom on double-tap for mobile
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function(event) {
+            const now = Date.now();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+        
+        // Keyboard shortcuts for sidebar
+        document.addEventListener('keydown', (e) => {
+            // Ctrl/Cmd + I to open sidebar
+            if ((e.ctrlKey || e.metaKey) && e.key === 'i') {
+                e.preventDefault();
+                toggleSidebar();
+            }
+            
+            // Escape to close sidebar
+            if (e.key === 'Escape' && sidebar.classList.contains('active')) {
+                toggleSidebar();
+            }
+        });
+        
+        // Initialize
+        updateActiveNavLink();
+    </script>
+</body>
+</html>
